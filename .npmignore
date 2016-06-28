@@ -1,0 +1,7 @@
+examples
+test
+coverage
+.travis.yml
+.eslintrc
+*.sublime-project
+*.sublime-workspace

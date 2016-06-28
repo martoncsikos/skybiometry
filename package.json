@@ -1,0 +1,49 @@
+{
+  "name": "skybiometry",
+  "version": "0.0.0",
+  "description": "Node.js wrapper for SkyBiometry API.",
+  "tags": [
+    "face",
+    "face detection",
+    "face recognition",
+    "face identification",
+    "skybiometry"
+  ],
+  "author": "Marton Csikos <marton.csikos@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/martoncsikos/skybiometry.git"
+  },
+  "bugs": {
+    "url": "https://github.com/martoncsikos/skybiometry/issues"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "main": "index.js",
+  "directories": {
+    "test": "test",
+    "lib": "lib",
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha",
+    "test-coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec",
+    "lint": "./node_modules/eslint/bin/eslint.js .; exit 0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "coveralls": "^2.11.9",
+    "eslint": "^2.12.0",
+    "eslint-config-airbnb-base": "^3.0.1",
+    "eslint-plugin-import": "^1.8.1",
+    "istanbul": "^0.4.4",
+    "mocha": "^2.5.3",
+    "mocha-lcov-reporter": "^1.2.0"
+  },
+  "dependencies": {
+    "lodash": "^4.13.1",
+    "request-promise": "^3.0.0"
+  }
+}

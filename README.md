@@ -121,7 +121,7 @@ http://api.skybiometry.com/fc/tags/remove
   * `password` - this method can be password protected if you want to make it an administrative operation. You can specify password in account settings.  
 
 ```js
-client.tags.remove('tagId1,tagId2', { password: 'optionalPassword'})
+client.tags.remove('tagId1,tagId2', { password: 'optionalPassword' })
 .then(result => console.log(result));
 ```
 
@@ -209,7 +209,7 @@ client.tags.get({
   uids: 'mark',
   limit: '20',
   order: 'random',
-  namespace: 'docs'
+  namespace: 'docs',
 })
 .then(result => console.log(result));
 ```
@@ -230,7 +230,7 @@ http://api.skybiometry.com/fc/faces/status
   * `namespace` – default data namespace to be used for all specified uids without data namespace specified.  
 
 ```js
-client.faces.status('mark', { namespace: 'docs'})
+client.faces.status('mark', { namespace: 'docs' })
 .then(result => console.log(result));
 ```
 
@@ -248,7 +248,7 @@ http://api.skybiometry.com/fc/faces/train
   * `namespace` – default data namespace to be used for all specified uids without data namespace specified.  
 
 ```js
-client.faces.train('mark', { namespace: 'docs'})
+client.faces.train('mark', { namespace: 'docs' })
 .then(result => console.log(result));
 ```
 

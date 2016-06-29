@@ -1,4 +1,4 @@
-# skybiometry
+# SkyBiometry
 Face detection and recognition. Node.js wrapper for SkyBiometry API.
 
 [![Build Status](https://travis-ci.org/martoncsikos/skybiometry.svg?branch=master)](https://travis-ci.org/martoncsikos/skybiometry)
@@ -37,16 +37,16 @@ The returned Promises are instances of [request](https://github.com/request/requ
   * [.limits()](#limits)
   * [.authenticate()](#authenticate)
 * [tags](#tags)
-  * [.remove(tids[, options])](#tags.remove)
-  * [.save(tids, uid[, options])](#tags.save)
-  * [.add(uid, url, tag[, options])](#tags.add)
-  * [.get(options)](#tags.get)
+  * [.remove(tids[, options])](#removetids-options)
+  * [.save(tids, uid[, options])](#savetids-uid-options)
+  * [.add(uid, url, tag[, options])](#adduid-url-tag-options)
+  * [.get(options)](#getoptions)
 * [faces](#faces)
-  * [.status(uids[, options])](#faces.status)
-  * [.train(uids[, options])](#faces.train)
-  * [.group(uids, options)](#faces.group)
-  * [.recognize(uids, options)](#faces.recognize)
-  * [.detect(options)](#faces.detect)
+  * [.status(uids[, options])](#statusuids-options)
+  * [.train(uids[, options])](#trainuids-options)
+  * [.group(uids, options)](#groupuids-options)
+  * [.recognize(uids, options)](#recognizeuids-options)
+  * [.detect(options)](#detectoptions)
 
 ### account
 
@@ -59,7 +59,7 @@ http://api.skybiometry.com/fc/account/users
 ```
 
 **Arguments**
-* `namespaces` - a comma separated list of one or more data namespaces
+* `namespaces` - a comma separated list of one or more data namespaces.
 
 ```js
 client.account.users('test_namespace')
@@ -105,10 +105,10 @@ client.account.authenticate()
 .then(result => console.log(result));
 ```
 
-### <a name="tags">tags</a>
+### tags
 
 ### .remove(tids[, options])
-Removes a previously saved tag
+Removes a previously saved tag.
 
 Method entry point:
 ```
@@ -116,7 +116,7 @@ http://api.skybiometry.com/fc/tags/remove
 ```
 
 **Arguments**
-* `tids` - one or more tag ids to remove. Tag id is a reference field in the response of [faces.detect](#faces.detect), [faces.recognize](#faces.recognize) and [tags.get](#tags.get) methods.
+* `tids` - one or more tag ids to remove. Tag id is a reference field in the response of [faces.detect](#detectoptions), [faces.recognize](#recognizeuids-options) and [tags.get](#getoptions) methods.
 * `options` - *Object*
   * `password` - this method can be password protected if you want to make it an administrative operation. You can specify password in account settings.  
 
@@ -134,11 +134,11 @@ http://api.skybiometry.com/fc/tags/save
 ```
 
 **Arguments**
-* `tids` - one or more tag ids to associate with the specified uid. Tag id is a reference field in the response of [faces.detect](#faces.detect), [faces.recognize](#faces.recognize) and [tags.get](#tags.get) methods.
+* `tids` - one or more tag ids to associate with the specified uid. Tag id is a reference field in the response of [faces.detect](#detectoptions), [faces.recognize](#recognizeuids-options) and [tags.get](#getoptions) methods.
 * `uid` - id of the user being tagged (e.g. mark@docs, where mark – is the name of your choice and docs is the name of created data namespace).
 * `options` - *Object*
   * `label` – display name of the user being tagged (e.g. First and Last name). Note that this information is saved and can later be retrieved per tag, not per user.
-  * `password` – this method can be password protected if you want to make it an administrative operation. You can specify password in account settings
+  * `password` – this method can be password protected if you want to make it an administrative operation. You can specify password in account settings.
 
 ```js
 client.tags.save('tagId1', 'mark@docs', {
@@ -158,7 +158,7 @@ http://api.skybiometry.com/fc/tags/add
 
 **Arguments**
 * `uid` – id of the user being tagged.
-* `url` – url to the image to add the tag to
+* `url` – url to the image to add the tag to.
 * `tag` - *Object*
   * `x` - horizontal center position of the tag, as a percentage from 0 to 100, from the left of the photo.
   * `y` - vertical center position of the tag, as a percentage from 0 to 100, from the left of the photo.
@@ -195,8 +195,8 @@ At least one of **options.uids**, **options.pids**, or **options.urls** is requi
 
 * `options` - *Object*
  * **`uids`** – a comma separated list of user ids to get tags for.
- * **`pids`** – a comma separated list of photo ids to get tags for (photo ids are returned for [faces.detect](#faces.detect) and [faces.recognize](#faces.recognize)).
- * **`urls`** – a comma separated list of images to get tags for
+ * **`pids`** – a comma separated list of photo ids to get tags for (photo ids are returned for [faces.detect](#detectoptions) and [faces.recognize](#recognizeuids-options)).
+ * **`urls`** – a comma separated list of images to get tags for.
  * `limit` – maximum tags to return (default: 5).
  * `together` – when multiple uids are provided, return only tags for photos where all uids appear together in the photo(s) (default: false).
  * `order` – specifies the order of returned tags (recent – for latest tags, random – random selected tags) (default: “recent”).
@@ -235,9 +235,7 @@ client.faces.status('mark', { namespace: 'docs'})
 ```
 
 ### .train(uids[, options])
-Used to train specified users. 
-
-Once the face tags were trained, specified user id can be recognized using [faces.recognize](#faces.recognize).
+Starts training of specified users. Once the face tags were trained, specified user id can be recognized using [faces.recognize](#recognizeuids-options).
 
 Method entry point:
 ```
@@ -267,7 +265,7 @@ http://api.skybiometry.com/fc/faces/group
 
 At least one of **options.urls** or **options.files** is required.
 * `options` - *Object*
-  * **`urls`** – a comma separated list of images 
+  * **`urls`** – a comma separated list of images .
   * **`files`** - image file as *Buffer* or *ReadStream*. See the [form-data](https://github.com/form-data/form-data) library used by [request](https://github.com/request/request) for futher details. If specified as a *String*, it will be interpreted as a Path to read the file from. Only one file is currently supported.
   * `namespace` – default data namespace to be used for all specified uids without data namespace specified.
   * `detector` – face detection quality attribute. Normal (default) – fast face and attribute detection, aggressive – more accurate and slower face and attribute detection.
@@ -303,7 +301,7 @@ http://api.skybiometry.com/fc/faces/recognize
 
 At least one of **options.urls** or **options.files** is required.
 * `options` - *Object*
-  * **`urls`** – a comma separated list of images 
+  * **`urls`** – a comma separated list of images .
   * **`files`** - image file as *Buffer* or *ReadStream*. See the [form-data](https://github.com/form-data/form-data) library used by [request](https://github.com/request/request) for futher details. If specified as a *String*, it will be interpreted as a Path to read the file from. Only one file is currently supported.
   * `namespace` – default data namespace to be used for all specified uids without data namespace specified.
   * `detector` – face detection quality attribute. Normal (default) – fast face and attribute detection, aggressive – more accurate and slower face and attribute detection.
@@ -335,7 +333,7 @@ http://api.skybiometry.com/fc/faces/detect
 **Arguments**
 At least one of **options.urls** or **options.files** is required.
 * `options` - *Object*
-  * **`urls`** – a comma separated list of images 
+  * **`urls`** – a comma separated list of images .
   * **`files`** - image file as *Buffer* or *ReadStream*. See the [form-data](https://github.com/form-data/form-data) library used by [request](https://github.com/request/request) for futher details. If specified as a *String*, it will be interpreted as a Path to read the file from. Only one file is currently supported.
   * `detector` – face detection quality attribute. Normal (default) – fast face and attribute detection, aggressive – more accurate and slower face and attribute detection.
   * `attributes` – specifies which attributes will be returned with the results. Accepted values: all, none or a comma separated list of supported attributes.
@@ -353,3 +351,5 @@ const fs = require('fs');
 client.faces.detect({ files: fs.createReadStream('./photo.jpg') })
 .then(result => console.log(result));
 ```
+
+*Disclaimer: This library is a third-party project and not maintained by SkyBiometry.com.*

@@ -352,4 +352,13 @@ client.faces.detect({ files: fs.createReadStream('./photo.jpg') })
 .then(result => console.log(result));
 ```
 
+## Workflow
+**Face enrollment steps (in order of calling):**
+
+1. [faces.detect](#detectoptions) – detects faces in specified images, returns face tags (every tag has unique tag id – tid).
+2. [tags.save](#savetids-uid-options) – saves specified face tags (by tid) with user specified user id(eg. mark@docs, where docs – data namespace name).
+3. [faces.train](#trainuids-options) – checks changes for specified user ids (eg. new tags were added using tags.save or removed using tags.remove) and either creates/updates/removes face template for specified user id from data namespace.
+
+Once the enrollment is complete, specified user can be now recognized using [faces.recognize](#recognizeuids-options).
+
 *Disclaimer: This library is a third-party project and not maintained by SkyBiometry.com.*

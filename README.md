@@ -276,7 +276,6 @@ At least one of **options.urls** or **options.files** is required.
   * `detect_all_feature_points` – specifies that all possible feature points are detected if set to true.
 
 ```js
-
 // photo as url
 client.faces.group('all@docs', { urls: 'http://www.example.com/photo.jpg' })
 .then(result => console.log(result));
@@ -310,7 +309,6 @@ At least one of **options.urls** or **options.files** is required.
   * `detect_all_feature_points` – specifies that all possible feature points are detected if set to true.
 
 ```js
-
 // photo as url
 client.faces.recognize('all@docs', { urls: 'http://www.example.com/photo.jpg' })
 .then(result => console.log(result));
@@ -340,7 +338,6 @@ At least one of **options.urls** or **options.files** is required.
   * `detect_all_feature_points` – specifies that all possible feature points are detected if set to true.
 
 ```js
-
 // photo as url
 client.faces.detect({ urls: 'http://www.example.com/photo.jpg' })
 .then(result => console.log(result));

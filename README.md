@@ -361,4 +361,4 @@ client.faces.detect({ files: fs.createReadStream('./photo.jpg') })
 
 Once the enrollment is complete, specified user can be now recognized using [faces.recognize](#recognizeuids-options).
 
-*Disclaimer: This library is a third-party project and not maintained by SkyBiometry.com.*
+*Disclaimer: This module is a third-party project and not maintained by SkyBiometry.com.*

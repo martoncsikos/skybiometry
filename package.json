@@ -1,6 +1,6 @@
 {
   "name": "skybiometry",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Node.js wrapper for SkyBiometry API.",
   "tags": [
     "face",

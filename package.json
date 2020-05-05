@@ -30,7 +30,9 @@
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha",
     "test-coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec",
-    "lint": "./node_modules/eslint/bin/eslint.js .; exit 0"
+    "lint": "./node_modules/eslint/bin/eslint.js .; exit 0",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -45,6 +47,8 @@
   "dependencies": {
     "lodash": "^4.17.10",
     "request": "^2.87.0",
-    "request-promise": "^4.2.2"
-  }
+    "request-promise": "^4.2.2",
+    "snyk": "^1.319.0"
+  },
+  "snyk": true
 }
